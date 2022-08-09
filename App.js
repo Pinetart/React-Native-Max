@@ -3,8 +3,10 @@ import { Button, StyleSheet, Text, View } from "react-native";
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Hello World</Text>
-      <Text>Another piece of text</Text>
+      <View>
+        <Text>Another piece of text</Text>
+      </View>
+      <Text style={styles.dummyText}>Hello World</Text>
       <Button title="TAP ME!" />
     </View>
   );
@@ -17,4 +19,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  dummyText: { margin: 16 },
 });
