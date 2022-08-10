@@ -1,10 +1,4 @@
-import {
-  Button,
-  StyleSheet,
-  TextInput,
-  View,
-  FlatList,
-} from "react-native";
+import { Button, StyleSheet, TextInput, View, FlatList } from "react-native";
 import { useState } from "react";
 import GoalItem from "./components/GoalItem";
 
@@ -44,7 +38,7 @@ export default function App() {
             //Only necessary if object parameter is not 'key'
           }}
           renderItem={(itemData) => {
-            return <GoalItem itemData={itemData} />;
+            return <GoalItem text={itemData.item.text} />;
           }}
         />
       </View>
