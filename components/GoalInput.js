@@ -33,6 +33,7 @@ const GoalInput = ({ addGoalHandler, endAddGoalHandler, visible }) => {
                 setEnteredGoalText("");
               }}
               title="Add Goal"
+              color="#b180f0"
             />
           </View>
           <View style={styles.button}>
@@ -41,6 +42,7 @@ const GoalInput = ({ addGoalHandler, endAddGoalHandler, visible }) => {
                 endAddGoalHandler();
               }}
               title="Cancel"
+              color="#f31282"
             />
           </View>
         </View>
@@ -59,7 +61,10 @@ const styles = StyleSheet.create({
   },
   textInput: {
     borderWidth: 1,
-    borderColor: "#cccccc",
+    borderColor: "#e4d0ff",
+    backgroundColor: "#e4d0ff",
+    color: "#120438",
+    borderRadius: 6,
     width: "100%",
     padding: 8,
     borderRadius: 5,
