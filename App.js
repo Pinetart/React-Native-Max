@@ -15,11 +15,14 @@ export default function App() {
   let screen = <StartGameScreen onPickNumber={pickedNumberhandler} />;
 
   if (userNumber) {
-    screen = <GameScreen />;
+    screen = <GameScreen selectedNumber={userNumber} />;
   }
 
   return (
-    <LinearGradient colors={[Colors.accent500, Colors.primary800]} style={styles.rootScreen}>
+    <LinearGradient
+      colors={[Colors.accent500, Colors.primary800]}
+      style={styles.rootScreen}
+    >
       <ImageBackground
         source={require("./assets/images/background.png")}
         resizeMode="cover"
