@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     justifyContent: "center",
-    borderRadius: 8,
     alignItems: "center",
+    borderRadius: 8,
   },
   title: {
     fontWeight: "bold",
