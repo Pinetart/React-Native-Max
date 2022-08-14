@@ -1,61 +1,60 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import WelcomeScreen from "./screens/WelcomeScreen";
-import UserScreen from "./screens/UserScreen";
-import { Ionicons } from "@expo/vector-icons";
+import Categories from "./screens/Categories";
+import MealsOverview from "./screens/MealsOverview";
 import { StatusBar } from "expo-status-bar";
-// import AppLoading from "expo-app-loading";
-// import { useEffect, useState } from "react";
+import { Button, StyleSheet, Text } from "react-native";
+import Favorites from "./screens/Favorites";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import MealDetailsScreen from "./screens/MealDetailsScreen";
 
-const BottomTab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
+
+const DrawerNavigator = () => {
+  return (
+    <Drawer.Navigator
+      initialRouteName="Categories"
+      screenOptions={{
+        headerStyle: { backgroundColor: "#351401" },
+        headerTintColor: "white",
+        sceneContainerStyle: { backgroundColor: "#3f2f25" },
+      }}
+    >
+      <Drawer.Screen name="Categories" component={Categories} />
+      <Drawer.Screen name="Favorites" component={Favorites} />
+    </Drawer.Navigator>
+  );
+};
 
 export default function App() {
-  // Splash screen code duration
-  // let [isLoaded, setIsLoaded] = useState(false);
-
-  // useEffect(() => {
-  //   let timeout = setTimeout(() => setIsLoaded(true), 3000);
-  //   return () => {
-  //     clearTimeout(timeout);
-  //   };
-  // }, []);
-
-  // if (!isLoaded) {
-  //   return <AppLoading />;
-  // }
-
   return (
     <>
       <StatusBar style="light" />
       <NavigationContainer>
-        <BottomTab.Navigator
-          initialRouteName="User"
+        <Stack.Navigator
+          initialRouteName="Drawer"
           screenOptions={{
-            headerStyle: { backgroundColor: "#3c0a6b" },
+            headerStyle: { backgroundColor: "#351401" },
             headerTintColor: "white",
-            tabBarActiveTintColor: "#3c0a6b",
+            contentStyle: { backgroundColor: "#3f2f25" },
           }}
         >
-          <BottomTab.Screen
-            name="Welcome"
-            component={WelcomeScreen}
+          <Stack.Screen
+            name="Drawer"
+            component={DrawerNavigator}
             options={{
-              tabBarIcon: ({ color, size }) => (
-                <Ionicons name="home" color={color} size={size} />
-              ),
+              headerShown: false,
             }}
           />
-          <BottomTab.Screen
-            name="User"
-            component={UserScreen}
-            options={{
-              tabBarIcon: ({ color, size }) => (
-                <Ionicons name="person" color={color} size={size} />
-              ),
-            }}
-          />
-        </BottomTab.Navigator>
+          <Stack.Screen name="MealOverview" component={MealsOverview} />
+          <Stack.Screen name="MealDetail" component={MealDetailsScreen} />
+        </Stack.Navigator>
       </NavigationContainer>
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {},
+});
