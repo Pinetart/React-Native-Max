@@ -1,41 +1,32 @@
-import Categories from "./screens/Categories";
-import MealsOverview from "./screens/MealsOverview";
-import { StatusBar } from "expo-status-bar";
-import { Button, StyleSheet, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import MealDetailsScreen from "./screens/MealDetailsScreen";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import WelcomeScreen from "./screens/WelcomeScreen";
+import UserScreen from "./screens/UserScreen";
+import { Platform } from "react-native";
 
-const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
-    <>
-      <StatusBar style="light" />
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="Meal Categories"
-          screenOptions={{
-            headerStyle: { backgroundColor: "#351401" },
-            headerTintColor: "white",
-            contentStyle: { backgroundColor: "#3f2f25" },
-          }}
-        >
-          <Stack.Screen
-            name="MealCategories"
-            component={Categories}
-            options={{
-              title: "All Categories",
-            }}
-          />
-          <Stack.Screen name="MealOverview" component={MealsOverview} />
-          <Stack.Screen name="MealDetail" component={MealDetailsScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </>
+    <NavigationContainer>
+      <Drawer.Navigator
+        initialRouteName="User"
+        screenOptions={{
+          headerTitleAlign: "center",
+          headerStyle: { backgroundColor: "blue" },
+          headerTintColor: "white",
+          drawerActiveTintColor: "black",
+          headerTitleContainerStyle: {
+            height: Platform.OS === "ios" ? 35 : null,
+          },
+          headerLeftContainerStyle: {
+            height: Platform.OS === "ios" ? 35 : null,
+          },
+        }}
+      >
+        <Drawer.Screen name="Welcome" component={WelcomeScreen} />
+        <Drawer.Screen name="User" component={UserScreen} />
+      </Drawer.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {},
-});
