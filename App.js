@@ -1,54 +1,61 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import WelcomeScreen from "./screens/WelcomeScreen";
 import UserScreen from "./screens/UserScreen";
-import { Platform, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import Test from "./components/test";
+import { StatusBar } from "expo-status-bar";
+// import AppLoading from "expo-app-loading";
+// import { useEffect, useState } from "react";
 
-const Drawer = createDrawerNavigator();
+const BottomTab = createBottomTabNavigator();
 
 export default function App() {
+  // Splash screen code duration
+  // let [isLoaded, setIsLoaded] = useState(false);
+
+  // useEffect(() => {
+  //   let timeout = setTimeout(() => setIsLoaded(true), 3000);
+  //   return () => {
+  //     clearTimeout(timeout);
+  //   };
+  // }, []);
+
+  // if (!isLoaded) {
+  //   return <AppLoading />;
+  // }
+
   return (
-    <NavigationContainer>
-      <Drawer.Navigator
-        initialRouteName="User"
-        screenOptions={{
-          headerTitleAlign: "center",
-          headerStyle: { backgroundColor: "blue" },
-          headerTintColor: "white",
-          drawerActiveTintColor: "black",
-          headerTitleContainerStyle: {
-            height: Platform.OS === "ios" ? 35 : null,
-          },
-          headerLeftContainerStyle: {
-            height: Platform.OS === "ios" ? 35 : null,
-          },
-          drawerActiveBackgroundColor: "blue",
-          drawerActiveTintColor: "white",
-          // drawerLabelStyle: {marginLeft: -20}
-        }}
-      >
-        {/* <Test/> */}
-        <Drawer.Screen
-          name="Welcome"
-          component={WelcomeScreen}
-          options={{
-            drawerIcon: ({ color, size }) => (
-              <Ionicons name="home" color={color} size={size} />
-            ),
+    <>
+      <StatusBar style="light" />
+      <NavigationContainer>
+        <BottomTab.Navigator
+          initialRouteName="User"
+          screenOptions={{
+            headerStyle: { backgroundColor: "#3c0a6b" },
+            headerTintColor: "white",
+            tabBarActiveTintColor: "#3c0a6b",
           }}
-        />
-        <Drawer.Screen
-          name="User"
-          component={UserScreen}
-          options={{
-            drawerIcon: ({ color, size }) => (
-              <Ionicons name="person" color={color} size={size} />
-            ),
-          }}
-        />
-      </Drawer.Navigator>
-    </NavigationContainer>
+        >
+          <BottomTab.Screen
+            name="Welcome"
+            component={WelcomeScreen}
+            options={{
+              tabBarIcon: ({ color, size }) => (
+                <Ionicons name="home" color={color} size={size} />
+              ),
+            }}
+          />
+          <BottomTab.Screen
+            name="User"
+            component={UserScreen}
+            options={{
+              tabBarIcon: ({ color, size }) => (
+                <Ionicons name="person" color={color} size={size} />
+              ),
+            }}
+          />
+        </BottomTab.Navigator>
+      </NavigationContainer>
+    </>
   );
 }
