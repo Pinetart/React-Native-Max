@@ -1,12 +1,10 @@
-import { Pressable, StyleSheet, Text, View, Platform } from "react-native";
-// import { useNavigation } from "@react-navigation/native";
+import { Pressable, View, Text, StyleSheet, Platform } from 'react-native';
 
-const CategoryGridTile = ({ title, color, onPress }) => {
-  // const navigation = useNavigation();
+function CategoryGridTile({ title, color, onPress }) {
   return (
     <View style={styles.gridItem}>
       <Pressable
-        android_ripple={{ color: "#ccc" }}
+        android_ripple={{ color: '#ccc' }}
         style={({ pressed }) => [
           styles.button,
           pressed ? styles.buttonPressed : null,
@@ -19,7 +17,9 @@ const CategoryGridTile = ({ title, color, onPress }) => {
       </Pressable>
     </View>
   );
-};
+}
+
+export default CategoryGridTile;
 
 const styles = StyleSheet.create({
   gridItem: {
@@ -28,30 +28,28 @@ const styles = StyleSheet.create({
     height: 150,
     borderRadius: 8,
     elevation: 4,
-    backgroundColor: "#fff",
-    shadowColor: "#000",
+    backgroundColor: 'white',
+    shadowColor: 'black',
     shadowOpacity: 0.25,
-    shadowRadius: 6,
     shadowOffset: { width: 0, height: 2 },
-    overflow: Platform.OS === "android" ? "hidden" : "visible",
+    shadowRadius: 8,
+    overflow: Platform.OS === 'android' ? 'hidden' : 'visible',
   },
   button: {
     flex: 1,
   },
   buttonPressed: {
     opacity: 0.5,
-    // backgroundColor: "#ccc",
   },
   innerContainer: {
     flex: 1,
     padding: 16,
-    justifyContent: "center",
-    alignItems: "center",
     borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 18,
   },
 });
-export default CategoryGridTile;
